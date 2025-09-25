@@ -1,13 +1,16 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
 const tabs = [
   { href: '/', label: '首页' },
   { href: '/log', label: '记录' },
   { href: '/inbox', label: '收件箱' },
+  { href: '/shares', label: '分享' }, // ✅ 新增概览入口
   { href: '/groups', label: '群组' },
-  { href: '/settings', label: '设置' }
+  { href: '/settings', label: '设置' },
 ]
+
 export default function Tabbar(){
   const p = usePathname()
   return (
@@ -17,7 +20,18 @@ export default function Tabbar(){
           const active = p===t.href
           return (
             <li key={t.href}>
-              <Link href={t.href} style={{display:'block',textAlign:'center',padding:'6px 8px',borderRadius:8, textDecoration:'none', color: active? '#be185d':'#374151', background: active?'#fff1f2':'transparent', border: active? '1px solid #fecdd3':'1px solid transparent'}}>{t.label}</Link>
+              <Link
+                href={t.href}
+                style={{
+                  display:'block',textAlign:'center',padding:'6px 8px',borderRadius:8,
+                  textDecoration:'none',
+                  color: active? '#be185d':'#374151',
+                  background: active?'#fff1f2':'transparent',
+                  border: active? '1px solid #fecdd3':'1px solid transparent'
+                }}
+              >
+                {t.label}
+              </Link>
             </li>
           )
         })}
